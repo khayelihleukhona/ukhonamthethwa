@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ukhona Mthethwa | Painting, sculpture and installation</title>
+<meta name="description" content="Portfolio of Ukhona Mthethwa, a visual artist from Dannhauser, KwaZulu-Natal working with rust, painting, grass-mat structures and sound.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   Tokens
+   ========================================================================== */
+:root {
+  --plaster: #E5E4DF;   /* page ground */
+  --bone:    #F2F1ED;   /* lifted surfaces, text on dark */
+  --iron:    #23262B;   /* text */
+  --dust:    #B8B2A7;   /* quiet fills */
+  --oxide:   #9A4A27;   /* the one accent: links, focus, active states */
+  --patina:  #5E6B64;
+  --muted:   #55585B;   /* secondary text */
+  --line:    rgba(35, 38, 43, .22);
+
+  --gutter:   clamp(1.25rem, 4vw, 3.5rem);
+  --header-h: 4.25rem;
+  --max:      88rem;
+
+  --font: "Archivo", "Helvetica Neue", Arial, system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--plaster);
+  color: var(--iron);
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  font-stretch: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .2em; }
+a:hover { color: var(--oxide); }
+
+:focus-visible { outline: 2px solid var(--oxide); outline-offset: 3px; }
+
+h1, h2, h3, p, dl, dd, figure { margin: 0; }
+
+.skip-link {
+  position: absolute; left: var(--gutter); top: -4rem;
+  background: var(--iron); color: var(--bone);
+  padding: .6rem 1rem; z-index: 100;
+}
+.skip-link:focus { top: .75rem; color: var(--bone); }
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.site-header {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  height: var(--header-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding-inline: var(--gutter);
+  color: var(--bone);
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+  border-bottom: 1px solid transparent;
+}
+.site-header.is-solid {
+  background: var(--plaster);
+  color: var(--iron);
+  border-bottom-color: var(--line);
+}
+.site-header a { text-decoration: none; }
+.site-header a:hover { color: inherit; }
+
+.brand {
+  font-weight: 700;
+  font-stretch: 112%;
+  letter-spacing: -.01em;
+}
+
+.nav { display: flex; gap: clamp(1rem, 2.4vw, 2.25rem); }
+.nav a {
+  font-size: .95rem;
+  padding-block: .35rem;
+  border-bottom: 1px solid transparent;
+}
+.nav a:hover { border-bottom-color: currentColor; }
+.nav a[aria-current="true"] { border-bottom-color: currentColor; }
+
+.menu-toggle {
+  display: none;
+  background: none; border: 0; color: inherit;
+  font: inherit; font-size: .95rem; padding: .5rem 0; cursor: pointer;
+}
+
+@media (max-width: 52rem) {
+  .menu-toggle { display: block; }
+  .nav {
+    display: none;
+    position: absolute; top: var(--header-h); left: 0; right: 0;
+    flex-direction: column; gap: 0;
+    background: var(--plaster); color: var(--iron);
+    border-bottom: 1px solid var(--line);
+    padding: .5rem var(--gutter) 1.25rem;
+  }
+  .nav.is-open { display: flex; }
+  .nav a { font-size: 1.25rem; padding-block: .7rem; border-bottom: 1px solid var(--line); }
+  .nav a[aria-current="true"] { border-bottom-color: var(--oxide); }
+}
+
+/* ==========================================================================
+   Home / hero
+   ========================================================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: calc(var(--header-h) + 2rem) var(--gutter) clamp(1.5rem, 3.5vw, 3rem);
+  color: var(--bone);
+  background: var(--iron);
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+}
+.hero::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(35,38,43,.5) 0%, rgba(35,38,43,.1) 30%, rgba(35,38,43,.82) 100%);
+}
+.hero > * { position: relative; z-index: 1; }
+
+.hero-name {
+  font-size: clamp(3.25rem, 13.5vw, 12.5rem);
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: .88;
+  letter-spacing: -.035em;
+  overflow-wrap: anywhere;
+}
+.hero-name .word { display: block; overflow: hidden; padding-bottom: .06em; }
+.hero-name .word > span { display: block; }
+
+.hero-meta {
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding-top: 1rem;
+  border-top: 1px solid rgba(242,241,237,.4);
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem;
+  font-size: 1rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-name .word > span {
+    transform: translateY(105%);
+    animation: rise .9s cubic-bezier(.2,.7,.1,1) forwards;
+  }
+  .hero-name .word:nth-child(2) > span { animation-delay: .12s; }
+  .hero-name .word:nth-child(3) > span { animation-delay: .24s; }
+  .hero-name .word:nth-child(4) > span { animation-delay: .36s; }
+  @keyframes rise { to { transform: translateY(0); } }
+}
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+.block {
+  padding: clamp(4rem, 9vw, 8rem) var(--gutter);
+  max-width: var(--max);
+  margin-inline: auto;
+}
+.block + .block { border-top: 1px solid var(--line); }
+
+.split {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(1rem, 2.5vw, 2.5rem);
+  row-gap: 2rem;
+}
+.split > h2 { grid-column: 1 / span 3; }
+.split > .content { grid-column: 4 / -1; }
+
+h2 {
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  font-weight: 700;
+  font-stretch: 118%;
+  letter-spacing: -.015em;
+  line-height: 1.15;
+}
+h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-stretch: 108%;
+  letter-spacing: -.01em;
+  line-height: 1.25;
+}
+
+@media (max-width: 52rem) {
+  .split > h2, .split > .content { grid-column: 1 / -1; }
+}
+
+.prose p { max-width: 62ch; }
+.prose p + p { margin-top: 1.1em; }
+.lede {
+  font-size: clamp(1.3rem, 2.3vw, 1.75rem);
+  line-height: 1.4;
+  letter-spacing: -.01em;
+  max-width: 34em;
+}
+
+/* About ------------------------------------------------------------------ */
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+}
+.portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 45%; background: var(--dust); }
+.portrait figcaption, .caption-note { margin-top: .6rem; font-size: .875rem; color: var(--muted); }
+.facts { margin-top: 2rem; display: grid; grid-template-columns: max-content 1fr; gap: .5rem 1.5rem; font-size: .95rem; }
+.facts dt { color: var(--muted); }
+@media (max-width: 52rem) {
+  .about-layout { grid-template-columns: 1fr; }
+  .portrait { max-width: 26rem; }
+}
+
+/* Portfolio -------------------------------------------------------------- */
+.portfolio-head {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: 1rem 2rem; margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+.filters { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; }
+.filters button {
+  background: none; border: 0; border-bottom: 1px solid transparent;
+  font: inherit; font-size: .95rem; color: var(--muted);
+  padding: .3rem 0; cursor: pointer;
+}
+.filters button:hover { color: var(--iron); }
+.filters button[aria-pressed="true"] { color: var(--iron); border-bottom-color: var(--oxide); }
+
+.grid { column-count: 3; column-gap: clamp(1rem, 2.5vw, 2.5rem); }
+@media (max-width: 62rem) { .grid { column-count: 2; } }
+@media (max-width: 36rem) { .grid { column-count: 1; } }
+
+.work { break-inside: avoid; margin-bottom: clamp(2rem, 4vw, 3.25rem); }
+.work-open {
+  display: block; width: 100%; padding: 0; border: 0; background: var(--dust);
+  cursor: zoom-in;
+}
+.work-open img { width: 100%; height: auto; transition: opacity .2s ease; }
+.work-open:hover img { opacity: .9; }
+.work figcaption { margin-top: .75rem; font-size: .9rem; line-height: 1.5; color: var(--muted); }
+.work-title { display: block; font-size: 1rem; font-weight: 600; color: var(--iron); }
+
+/* Practice --------------------------------------------------------------- */
+.practice-grid {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 4vw, 4rem);
+}
+.practice-grid p { margin-top: .6rem; max-width: 46ch; }
+@media (max-width: 36rem) { .practice-grid { grid-template-columns: 1fr; } }
+
+/* CV --------------------------------------------------------------------- */
+.cv-group + .cv-group { margin-top: clamp(2rem, 4vw, 3rem); }
+.cv-group h3 { margin-bottom: .75rem; padding-bottom: .6rem; border-bottom: 1px solid var(--line); }
+.cv-row {
+  display: grid; grid-template-columns: 5.5rem 1fr; gap: 1rem;
+  padding-block: .35rem;
+}
+.cv-row dt { color: var(--muted); font-variant-numeric: tabular-nums; }
+.cv-actions { margin-top: 2.5rem; }
+
+/* Contact ---------------------------------------------------------------- */
+.contact-layout {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+}
+.email-big {
+  display: inline-block;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 600; font-stretch: 110%; letter-spacing: -.015em;
+  overflow-wrap: anywhere;
+}
+.contact-list { margin-top: 2rem; display: grid; gap: 1.25rem; }
+.contact-list dt { color: var(--muted); font-size: .9rem; }
+
+form { display: grid; gap: 1.1rem; }
+label { display: grid; gap: .35rem; font-size: .9rem; color: var(--muted); }
+input, textarea {
+  font: inherit; color: var(--iron);
+  background: var(--bone);
+  border: 1px solid var(--line); border-radius: 0;
+  padding: .75rem .85rem; width: 100%;
+}
+textarea { min-height: 9rem; resize: vertical; }
+input:focus-visible, textarea:focus-visible { outline-offset: 1px; border-color: var(--oxide); }
+
+.button {
+  justify-self: start;
+  font: inherit; font-weight: 600;
+  background: var(--iron); color: var(--bone);
+  border: 1px solid var(--iron); border-radius: 0;
+  padding: .8rem 1.4rem; cursor: pointer; text-decoration: none; display: inline-block;
+}
+.button:hover { background: var(--oxide); border-color: var(--oxide); color: var(--bone); }
+.button.quiet { background: transparent; color: var(--iron); }
+.button.quiet:hover { background: var(--iron); border-color: var(--iron); color: var(--bone); }
+
+@media (max-width: 52rem) { .contact-layout { grid-template-columns: 1fr; } }
+
+/* Footer ----------------------------------------------------------------- */
+.site-footer {
+  padding: 1.75rem var(--gutter);
+  border-top: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem;
+  font-size: .875rem; color: var(--muted);
+}
+
+/* Lightbox --------------------------------------------------------------- */
+dialog.lightbox {
+  padding: 0; border: 0; background: var(--plaster); color: var(--iron);
+  width: min(96vw, 78rem); max-height: 94vh; max-width: none;
+}
+dialog.lightbox[open] { display: grid; grid-template-rows: minmax(0, 1fr) auto; }
+dialog.lightbox::backdrop { background: rgba(35, 38, 43, .86); }
+.lb-stage { display: grid; place-items: center; background: var(--dust); min-height: 0; }
+.lb-stage img { max-width: 100%; max-height: 74vh; width: auto; height: auto; object-fit: contain; }
+.lb-bar {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end;
+  gap: 1rem 2rem; padding: 1rem 1.25rem 1.1rem;
+}
+.lb-caption { font-size: .9rem; line-height: 1.5; color: var(--muted); }
+.lb-caption .work-title { font-size: 1.05rem; }
+.lb-controls { display: flex; gap: 1.25rem; }
+.lb-controls button {
+  background: none; border: 0; border-bottom: 1px solid transparent;
+  font: inherit; font-size: .95rem; color: var(--iron); padding: .3rem 0; cursor: pointer;
+}
+.lb-controls button:hover { color: var(--oxide); border-bottom-color: var(--oxide); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#about">Skip to content</a>
+
+<header class="site-header" id="site-header">
+  <a class="brand" href="#home" data-artist>Ukhona Mthethwa</a>
+  <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav class="nav" id="nav" aria-label="Main">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#practice">Practice</a>
+    <a href="#cv">CV</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HOME -->
+  <section class="hero" id="home" aria-label="Introduction">
+    <div class="hero-bg" id="hero-bg" role="img" aria-label="Installation view of Umphako Wendlela: rust paintings hung on grass-mat making structures"></div>
+    <h1 class="hero-name" id="hero-name" data-artist>Ukhona Mthethwa</h1>
+    <div class="hero-meta">
+      <span>Painting, sculpture, sound and installation</span>
+      <span>Umphako Wendlela, 2025</span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="block split" id="about">
+    <h2>About</h2>
+    <div class="content">
+      <div class="about-layout">
+        <figure class="portrait">
+          <img id="portrait-img" alt="Ukhona Mthethwa crouching in the middle of the Umphako Wendlela installation" width="800" height="1000">
+          <figcaption>In the Umphako Wendlela installation</figcaption>
+        </figure>
+        <div>
+          <p class="lede">Painting is my primary medium, but my practice has expanded into sculpture, sound and installation, using rust and indigenous grass-mat making structures.</p>
+          <div class="prose" style="margin-top:1.75rem">
+            <p><span data-artist>Ukhona Mthethwa</span> (b. 2001) is a visual artist from Dannhauser, a small mining town in KwaZulu-Natal. He lives and works in Pretoria, South Africa. He is completing a Master's degree in Fine and Studio Arts at Tshwane University of Technology (TUT), where he earned a Postgraduate Diploma in Fine and Applied Arts, cum laude.</p>
+            <p>His work uses a dark colour palette and symbolism that reflects both personal and collective experiences. He has shown in group exhibitions at The Viewing Room Art Gallery, Carnegie Art Gallery and Trent Gallery, and at Capital Art Fair Tshwane. In 2026 he was a finalist for Sasol New Signatures and a top five finalist for the Cassirer Welz Award.</p>
+          </div>
+          <dl class="facts">
+            <dt>Born</dt><dd>2001, Dannhauser, KwaZulu-Natal</dd>
+            <dt>Lives and works</dt><dd>Pretoria, South Africa</dd>
+            <dt>Studying</dt><dd>Master's, Fine and Studio Arts, TUT</dd>
+            <dt>Recent</dt><dd>Finalist, Sasol New Signatures 2026</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="block" id="portfolio">
+    <div class="portfolio-head">
+      <h2>Portfolio</h2>
+      <div class="filters" id="filters" role="group" aria-label="Filter works by medium"></div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <p style="margin-top:1rem"><a class="button quiet" href="umphako-wendlela-catalogue.pdf" download>Download the 2025 catalogue (PDF)</a></p>
+  </section>
+
+  <!-- PRACTICE -->
+  <section class="block" id="practice">
+    <div class="split">
+      <h2>Practice</h2>
+      <div class="content">
+        <p class="lede">My work explores memory, lineage and transformation through ancestral archetypes, mythology and African folktales.</p>
+        <div class="prose" style="margin-top:1.75rem">
+          <p><em>Umphako Wendlela</em> is a Zulu phrase meaning &ldquo;provision for a journey&rdquo;. It answers to what I carried from home: the stories told on my family&rsquo;s grass mat, the history of the Dingiswayo lineage, and the sound and vibration of the mines around my community in Dannhauser.</p>
+          <p>My father is a steelworker. When the mines blast, the storage space where he keeps his metalwork shakes. Away from home, that sound returns to me as memory, and it runs through the paintings, the structures and the sound in this work.</p>
+        </div>
+        <div class="practice-grid">
+          <div>
+            <h3>Painting</h3>
+            <p>Rust and acrylic on canvas. Through abstraction and the layering of figures, the paintings reflect on the shadows of history that follow us and the realities of the present.</p>
+          </div>
+          <div>
+            <h3>Rust</h3>
+            <p>Rust is a preservative of time. It connects the work to my father&rsquo;s world of steel and to the broader history of mining around my hometown.</p>
+          </div>
+          <div>
+            <h3>Grass-mat structures</h3>
+            <p>The grass-mat making structure is both material and metaphor: a vessel of memory that holds the woven stories of my ancestry. Canvases hang from wooden frames and spill onto the floor.</p>
+          </div>
+          <div>
+            <h3>Sound and installation</h3>
+            <p>Sound echoes the explosions of the mines and the clattering of my father&rsquo;s metalwork. In <em>Ayikho Indlu</em> (&ldquo;there is no home&rdquo;), small framed canvases rest on red bricks with steel bars, wire and an enamel cup.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CV -->
+  <section class="block split" id="cv">
+    <h2>CV and exhibitions</h2>
+    <div class="content">
+
+      <div class="cv-group">
+        <h3>Group exhibitions</h3>
+        <dl>
+          <div class="cv-row"><dt>2026</dt><dd>Sasol New Signatures, Pretoria Art Museum, Pretoria</dd></div>
+          <div class="cv-row"><dt>2026</dt><dd>Cassirer Welz Award 2026, Bag Factory and Strauss &amp; Co., Johannesburg</dd></div>
+          <div class="cv-row"><dt>2025</dt><dd>The Visual Art of Creating Beyond the Apartheid Imagination, Gallery Chosi, Durban</dd></div>
+          <div class="cv-row"><dt>2025</dt><dd>76/25 Reimagining the next 30 years, Printmaking with TACS, Women&rsquo;s Jail, Constitution Hill, Johannesburg</dd></div>
+          <div class="cv-row"><dt>2025</dt><dd>Annual Student Exhibition, Pretoria Arts Association, Pretoria</dd></div>
+          <div class="cv-row"><dt>2025</dt><dd>1Twelve2, Trent Gallery, Pretoria</dd></div>
+          <div class="cv-row"><dt>2024</dt><dd>Trajectory, The Viewing Room Art Gallery, Pretoria</dd></div>
+          <div class="cv-row"><dt>2024</dt><dd>Untitled, Carnegie Art Gallery, Newcastle</dd></div>
+          <div class="cv-row"><dt>2024</dt><dd>11VEN, Trent Gallery, Pretoria</dd></div>
+          <div class="cv-row"><dt>2024</dt><dd>Sweet but deadly, The Viewing Room Art Gallery, Pretoria</dd></div>
+          <div class="cv-row"><dt>2024</dt><dd>TEN/10, Trent Gallery, Pretoria</dd></div>
+          <div class="cv-row"><dt>2024</dt><dd>Between Them, TerraContemporary Art Gallery, Wapadrand, Pretoria</dd></div>
+          <div class="cv-row"><dt>2023</dt><dd>Tshwane University of Technology Student Exhibition, Painting and Printmaking, The Viewing Room Art Gallery, Pretoria</dd></div>
+          <div class="cv-row"><dt>2022</dt><dd>Tshwane University of Technology Student Printmaking Exhibitions, Johann van Heerden&rsquo;s Art and Gallery, Pretoria</dd></div>
+        </dl>
+      </div>
+
+      <div class="cv-group">
+        <h3>Art fairs</h3>
+        <dl>
+          <div class="cv-row"><dt>2024</dt><dd>Capital Art Fair Tshwane, with Tshwane University of Technology, Pretoria</dd></div>
+        </dl>
+      </div>
+
+      <div class="cv-group">
+        <h3>Awards</h3>
+        <dl>
+          <div class="cv-row"><dt>2026</dt><dd>Finalist, Sasol New Signatures</dd></div>
+          <div class="cv-row"><dt>2026</dt><dd>Top 5 finalist, Cassirer Welz Award 2026, Bag Factory and Strauss &amp; Co.</dd></div>
+          <div class="cv-row"><dt>2025</dt><dd>Ingrid Stevens Award, best student in the Advanced Diploma in Fine and Applied Arts</dd></div>
+          <div class="cv-row"><dt>2024</dt><dd>Ingrid Stevens Award, best student in the Postgraduate Diploma in Fine and Applied Arts</dd></div>
+        </dl>
+      </div>
+
+      <div class="cv-group">
+        <h3>Writing</h3>
+        <dl>
+          <div class="cv-row"><dt>2025</dt><dd>&ldquo;A Reflection on Warren Maroon&rdquo;, published by ArtThrob, for The Visual Art of Creating Beyond the Apartheid Imagination programme, Gallery Chosi</dd></div>
+        </dl>
+      </div>
+
+      <div class="cv-group">
+        <h3>Art programmes</h3>
+        <dl>
+          <div class="cv-row"><dt>2026</dt><dd>Mapping the Art World (masterclass), Shared Practice and Bag Factory</dd></div>
+          <div class="cv-row"><dt>2025</dt><dd>Printmaking and Market Access, visual art workshop, TACS Studio, Transwerke, Constitution Hill</dd></div>
+          <div class="cv-row"><dt>2024</dt><dd>The Visual Art of Creating Beyond the Apartheid Imagination, Gallery Chosi</dd></div>
+        </dl>
+      </div>
+
+      <div class="cv-group">
+        <h3>Education</h3>
+        <dl>
+          <div class="cv-row"><dt>2026</dt><dd>Master&rsquo;s degree in Art and Design: Fine and Studio Arts, Tshwane University of Technology (in progress)</dd></div>
+          <div class="cv-row"><dt>2025</dt><dd>Postgraduate Diploma in Fine and Applied Arts, Tshwane University of Technology (cum laude)</dd></div>
+          <div class="cv-row"><dt>2024</dt><dd>Advanced Diploma in Fine and Applied Arts, Tshwane University of Technology</dd></div>
+          <div class="cv-row"><dt>2023</dt><dd>Diploma in Fine and Applied Arts, Painting and Printmaking, Tshwane University of Technology</dd></div>
+        </dl>
+      </div>
+
+      <div class="cv-actions">
+        <a class="button quiet" id="cv-link" href="cv.pdf" download>Download full CV (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="block split" id="contact">
+    <h2>Contact</h2>
+    <div class="content">
+      <div class="contact-layout">
+        <div>
+          <p class="lede" style="margin-bottom:1.5rem">For enquiries about work, exhibitions and collaborations, get in touch.</p>
+          <a class="email-big" id="email-link" href="mailto:Ukhonamthethwa@gmail.com">Ukhonamthethwa@gmail.com</a>
+          <dl class="contact-list">
+            <div><dt>Instagram</dt><dd><a id="ig-link" href="https://instagram.com/Ukhonamthethwa" rel="noopener">@Ukhonamthethwa</a></dd></div>
+            <div><dt>Based in</dt><dd>Pretoria, South Africa</dd></div>
+          </dl>
+        </div>
+
+        <form id="contact-form">
+          <label>Your name
+            <input type="text" name="name" autocomplete="name" required>
+          </label>
+          <label>Your email
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+          <label>Message
+            <textarea name="message" required></textarea>
+          </label>
+          <button class="button" type="submit">Open in email app</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <span>&copy; <span id="year">2026</span> <span data-artist>Ukhona Mthethwa</span>. All rights reserved.</span>
+  <a href="#home">Back to top</a>
+</footer>
+
+<!-- Lightbox -->
+<dialog class="lightbox" id="lightbox" aria-label="Artwork detail">
+  <div class="lb-stage"><img id="lb-img" alt=""></div>
+  <div class="lb-bar">
+    <div class="lb-caption" id="lb-caption"></div>
+    <div class="lb-controls">
+      <button type="button" id="lb-prev">Previous</button>
+      <button type="button" id="lb-next">Next</button>
+      <button type="button" id="lb-close">Close</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+/* ==========================================================================
+   EDIT HERE
+   --------------------------------------------------------------------------
+   1. SITE: your name, contact details and the three main image paths.
+   2. ARTWORKS: one entry per work. Put your image files in an /images folder
+      (or anywhere) and change the "image" path. If a path is wrong or the file
+      is missing, a textured placeholder is shown instead so the layout holds.
+        - ratio is height / width of the placeholder only (1.25 = portrait,
+          0.75 = landscape, 1 = square). Real images use their own proportions.
+        - category must be consistent: filter buttons are built from it.
+        - series and note are optional extra caption lines (note is added after the year).
+        - leave year or dimensions as "" to hide that line.
+   ========================================================================== */
+const SITE = {
+  name: "Ukhona Mthethwa",
+  email: "Ukhonamthethwa@gmail.com",
+  instagramUrl: "https://instagram.com/Ukhonamthethwa",
+  instagramLabel: "@Ukhonamthethwa",
+  heroImage: "images/hero.jpg",
+  portraitImage: "images/portrait.jpg",
+  cvFile: "cv.pdf"
+};
+
+const ARTWORKS = [
+  { image: "images/work-01.jpg", title: "Owendlela", year: "2025", medium: "Rust and acrylic on canvas", dimensions: "100 × 79.5 cm", category: "Painting", series: "Umphako Wendlela", ratio: 2.24 },
+  { image: "images/work-02.jpg", title: "Owendlela", year: "2025", note: "installation view", medium: "Rust and acrylic on canvas with grass-mat making structure", dimensions: "Canvas: 100 × 79.5 cm", category: "Installation view", series: "Umphako Wendlela", ratio: 0.62 },
+  { image: "images/work-03.jpg", title: "Untitled", year: "2025", medium: "Rust and acrylic on canvas", dimensions: "230 × 71.5 cm", category: "Painting", series: "Umphako Wendlela", ratio: 2.94 },
+  { image: "images/work-04.jpg", title: "Untitled", year: "2025", note: "installation view", medium: "Rust and acrylic on canvas with grass-mat making structure", dimensions: "Canvas: 230 × 71.5 cm", category: "Installation view", series: "Umphako Wendlela", ratio: 0.83 },
+  { image: "images/work-05.jpg", title: "Untitled", year: "2025", medium: "Rust and acrylic on canvas", dimensions: "230 × 30 cm", category: "Painting", series: "Umphako Wendlela", ratio: 6.04 },
+  { image: "images/work-06.jpg", title: "Untitled", year: "2025", note: "installation view", medium: "Rust and acrylic on canvas with grass-mat making structure", dimensions: "Canvas: 230 × 30 cm", category: "Installation view", series: "Umphako Wendlela", ratio: 1.14 },
+  { image: "images/work-07.jpg", title: "Untitled", year: "2025", medium: "Rust and acrylic on canvas", dimensions: "110 × 75 cm", category: "Painting", series: "Umphako Wendlela", ratio: 3.14 },
+  { image: "images/work-08.jpg", title: "Untitled", year: "2025", note: "installation view", medium: "Rust and acrylic on canvas with grass-mat making structure", dimensions: "Canvas: 110 × 75 cm", category: "Installation view", series: "Umphako Wendlela", ratio: 1.0 },
+  { image: "images/work-09.jpg", title: "Untitled", year: "2025", medium: "Rust and acrylic on canvas", dimensions: "100 × 80 cm", category: "Painting", series: "Umphako Wendlela", ratio: 3.9 },
+  { image: "images/work-10.jpg", title: "Untitled", year: "2025", note: "installation view", medium: "Rust and acrylic on canvas with grass-mat making structure", dimensions: "Canvas: 100 × 80 cm", category: "Installation view", series: "Umphako Wendlela", ratio: 0.93 },
+  { image: "images/work-11.jpg", title: "Untitled", year: "2025", medium: "Rust and acrylic on canvas", dimensions: "240 × 80.5 cm", category: "Painting", series: "Umphako Wendlela", ratio: 2.52 },
+  { image: "images/work-12.jpg", title: "Untitled", year: "2025", note: "installation view", medium: "Rust and acrylic on canvas with grass-mat making structure", dimensions: "Canvas: 240 × 80.5 cm", category: "Installation view", series: "Umphako Wendlela", ratio: 1.03 },
+  { image: "images/work-13.jpg", title: "Imbeleko Yokuqala", year: "2025", medium: "Rust and acrylic on canvas, framed", dimensions: "27 × 21.5 cm", category: "Painting", series: "Ayikho Indlu", ratio: 1.34 },
+  { image: "images/work-14.jpg", title: "Imbeleko Yokuqala", year: "2025", note: "installation view", medium: "Rust and acrylic on canvas (framed) with steel bar and red bricks", dimensions: "Canvas: 27 × 21.5 cm", category: "Installation view", series: "Ayikho Indlu", ratio: 0.78 },
+  { image: "images/work-15.jpg", title: "Untitled", year: "2025", medium: "Rust and acrylic on canvas, framed", dimensions: "47.5 × 47 cm", category: "Painting", series: "Ayikho Indlu", ratio: 1.01 },
+  { image: "images/work-16.jpg", title: "Untitled", year: "2025", note: "installation view", medium: "Rust and acrylic on canvas (framed) with red bricks", dimensions: "Canvas: 47.5 × 47 cm", category: "Installation view", series: "Ayikho Indlu", ratio: 0.58 },
+  { image: "images/work-17.jpg", title: "Untitled", year: "2025", medium: "Rust and acrylic on canvas, framed", dimensions: "50.5 × 46.5 cm", category: "Painting", series: "Ayikho Indlu", ratio: 1.08 },
+  { image: "images/work-18.jpg", title: "Untitled", year: "2025", note: "installation view", medium: "Rust and acrylic on canvas (framed) with wire and red bricks", dimensions: "Canvas: 50.5 × 46.5 cm", category: "Installation view", series: "Ayikho Indlu", ratio: 0.97 },
+  { image: "images/work-19.jpg", title: "Untitled", year: "2025", medium: "Rust and acrylic on canvas, framed", dimensions: "27 × 61.5 cm", category: "Painting", series: "Ayikho Indlu", ratio: 0.42 },
+  { image: "images/work-20.jpg", title: "Untitled", year: "2025", note: "installation view", medium: "Rust and acrylic on canvas (framed) with rusted wire and red bricks", dimensions: "Canvas: 27 × 61.5 cm", category: "Installation view", series: "Ayikho Indlu", ratio: 1.0 },
+  { image: "images/work-21.jpg", title: "uGebedu", year: "2025", medium: "Rust and acrylic on canvas, framed", dimensions: "49.5 × 52 cm", category: "Painting", series: "Ayikho Indlu", ratio: 0.87 },
+  { image: "images/work-22.jpg", title: "uGebedu", year: "2025", note: "installation view", medium: "Rust and acrylic on canvas (framed) with steel bar and red bricks", dimensions: "Canvas: 49.5 × 52 cm", category: "Installation view", series: "Ayikho Indlu", ratio: 1.01 },
+  { image: "images/work-23.jpg", title: "Untitled", year: "2025", medium: "Rust and acrylic on canvas, framed", dimensions: "52.5 × 52 cm", category: "Painting", series: "Ayikho Indlu", ratio: 1.01 },
+  { image: "images/work-24.jpg", title: "Untitled", year: "2025", note: "installation view", medium: "Rust and acrylic on canvas (framed) with red bricks and enamel cup", dimensions: "Canvas: 52.5 × 52 cm", category: "Installation view", series: "Ayikho Indlu", ratio: 0.87 },
+  { image: "images/exhibition-view-01.jpg", title: "Umphako Wendlela", year: "", medium: "Exhibition view", dimensions: "", category: "Installation view", series: "Umphako Wendlela", ratio: 0.71 },
+  { image: "images/exhibition-view-02.jpg", title: "Umphako Wendlela", year: "", medium: "Exhibition view", dimensions: "", category: "Installation view", series: "Umphako Wendlela", ratio: 0.62 }
+];
+
+/* ==========================================================================
+   Everything below is behaviour. You should not need to change it.
+   ========================================================================== */
+(function () {
+  const $  = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const esc = (s) => String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+
+  /* Generated texture used whenever an image path is missing ------------- */
+  const TONES = {
+    rust:   { r: "0.18 0.45 0.72 0.88", g: "0.07 0.20 0.36 0.50", b: "0.04 0.09 0.15 0.22" },
+    dust:   { r: "0.35 0.60 0.78 0.90", g: "0.33 0.57 0.74 0.86", b: "0.30 0.50 0.66 0.78" },
+    iron:   { r: "0.08 0.16 0.28 0.40", g: "0.09 0.17 0.29 0.40", b: "0.11 0.19 0.31 0.43" },
+    patina: { r: "0.15 0.30 0.45 0.62", g: "0.22 0.40 0.55 0.70", b: "0.20 0.36 0.50 0.62" }
+  };
+  const TONE_BY_CATEGORY = { Painting: "rust", Sculpture: "iron", Installation: "patina" };
+
+  function texture(seed, tone, w, h, freq) {
+    const t = TONES[tone] || TONES.rust;
+    const svg =
+      `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid slice">` +
+      `<filter id="f" x="0" y="0" width="100%" height="100%">` +
+      `<feTurbulence type="fractalNoise" baseFrequency="${freq}" numOctaves="5" seed="${seed}"/>` +
+      `<feColorMatrix values="1 0 0 0 0  1 0 0 0 0  1 0 0 0 0  0 0 0 0 1"/>` +
+      `<feComponentTransfer><feFuncR type="table" tableValues="${t.r}"/><feFuncG type="table" tableValues="${t.g}"/><feFuncB type="table" tableValues="${t.b}"/></feComponentTransfer>` +
+      `</filter><rect width="100%" height="100%" filter="url(#f)"/></svg>`;
+    return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+  }
+
+  /* Basic site details -------------------------------------------------- */
+  document.title = `${SITE.name} | Painting, sculpture and installation`;
+  $$("[data-artist]").forEach(el => { el.textContent = SITE.name; });
+  $("#year").textContent = new Date().getFullYear();
+
+  // Hero name: one span per word so each line can rise in
+  const heroName = $("#hero-name");
+  heroName.setAttribute("aria-label", SITE.name);
+  heroName.innerHTML = SITE.name.split(/\s+/).map(w => `<span class="word" aria-hidden="true"><span>${esc(w)}</span></span>`).join("");
+
+  const emailLink = $("#email-link");
+  emailLink.href = "mailto:" + SITE.email;
+  emailLink.textContent = SITE.email;
+  const ig = $("#ig-link");
+  ig.href = SITE.instagramUrl;
+  ig.textContent = SITE.instagramLabel;
+  $("#cv-link").href = SITE.cvFile;
+
+  /* Hero background ------------------------------------------------------ */
+  const heroBg = $("#hero-bg");
+  heroBg.style.backgroundImage = `url("${texture(7, "rust", 1600, 1000, 0.006)}")`;
+  const heroTest = new Image();
+  heroTest.onload = () => { heroBg.style.backgroundImage = `url("${SITE.heroImage}")`; };
+  heroTest.src = SITE.heroImage;
+
+  /* Portrait ------------------------------------------------------------- */
+  const portrait = $("#portrait-img");
+  portrait.addEventListener("error", () => { portrait.src = texture(21, "dust", 800, 1000, 0.01); }, { once: true });
+  portrait.src = SITE.portraitImage;
+
+  /* Portfolio grid + filters -------------------------------------------- */
+  const grid = $("#grid");
+  const filtersEl = $("#filters");
+  const categories = ["All", ...Array.from(new Set(ARTWORKS.map(a => a.category)))];
+  let activeFilter = "All";
+  let visible = ARTWORKS.slice();
+
+  function placeholderFor(a, i) {
+    const tone = i % 4 === 1 && a.category === "Painting" ? "dust" : (TONE_BY_CATEGORY[a.category] || "rust");
+    const w = 800, h = Math.round(w * (a.ratio || 1));
+    return texture(i + 3, tone, w, h, a.category === "Installation" ? 0.016 : 0.009);
+  }
+  const altFor = (a) => `${a.title}${a.note ? " (" + a.note + ")" : ""}. ${a.medium}.`;
+  const captionLines = (a) => [
+    [a.year, a.note].filter(Boolean).join(", "),
+    a.medium,
+    a.dimensions,
+    a.series
+  ].filter(Boolean);
+
+  function attachFallback(img, a) {
+    const index = ARTWORKS.indexOf(a);
+    img.addEventListener("error", () => { img.src = placeholderFor(a, index); }, { once: true });
+  }
+
+  function renderFilters() {
+    filtersEl.innerHTML = categories.map(c =>
+      `<button type="button" data-filter="${esc(c)}" aria-pressed="${c === activeFilter}">${esc(c === "All" ? "All works" : c)}</button>`
+    ).join("");
+  }
+
+  function renderGrid() {
+    visible = activeFilter === "All" ? ARTWORKS.slice() : ARTWORKS.filter(a => a.category === activeFilter);
+    grid.innerHTML = "";
+    visible.forEach((a, i) => {
+      const fig = document.createElement("figure");
+      fig.className = "work";
+      fig.innerHTML =
+        `<button type="button" class="work-open" data-index="${i}" aria-label="View ${esc(a.title)} larger">` +
+          `<img loading="lazy" alt="${esc(altFor(a))}">` +
+        `</button>` +
+        `<figcaption>` +
+          `<span class="work-title">${esc(a.title)}</span>` +
+          captionLines(a).map(esc).join("<br>") +
+        `</figcaption>`;
+      const img = $("img", fig);
+      attachFallback(img, a);
+      img.src = a.image;
+      grid.appendChild(fig);
+    });
+  }
+
+  filtersEl.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-filter]");
+    if (!btn) return;
+    activeFilter = btn.dataset.filter;
+    renderFilters();
+    renderGrid();
+  });
+
+  renderFilters();
+  renderGrid();
+
+  /* Lightbox ------------------------------------------------------------- */
+  const lb = $("#lightbox");
+  const lbImg = $("#lb-img");
+  const lbCaption = $("#lb-caption");
+  let current = 0;
+
+  function showWork(i) {
+    current = (i + visible.length) % visible.length;
+    const a = visible[current];
+    const index = ARTWORKS.indexOf(a);
+    lbImg.onerror = () => { lbImg.onerror = null; lbImg.src = placeholderFor(a, index); };
+    lbImg.src = a.image;
+    lbImg.alt = altFor(a);
+    lbCaption.innerHTML =
+      `<span class="work-title">${esc(a.title)}</span>` +
+      captionLines(a).map(esc).join("<br>");
+  }
+
+  grid.addEventListener("click", (e) => {
+    const btn = e.target.closest(".work-open");
+    if (!btn) return;
+    showWork(Number(btn.dataset.index));
+    lb.showModal();
+  });
+  $("#lb-prev").addEventListener("click", () => showWork(current - 1));
+  $("#lb-next").addEventListener("click", () => showWork(current + 1));
+  $("#lb-close").addEventListener("click", () => lb.close());
+  lb.addEventListener("click", (e) => { if (e.target === lb) lb.close(); });
+  lb.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft")  showWork(current - 1);
+    if (e.key === "ArrowRight") showWork(current + 1);
+  });
+
+  /* Header: transparent over hero, solid after; mobile menu -------------- */
+  const header = $("#site-header");
+  const nav = $("#nav");
+  const toggle = $("#menu-toggle");
+
+  function updateHeader() {
+    const pastHero = window.scrollY > window.innerHeight * 0.7;
+    header.classList.toggle("is-solid", pastHero || nav.classList.contains("is-open"));
+  }
+  window.addEventListener("scroll", updateHeader, { passive: true });
+  window.addEventListener("resize", updateHeader);
+  updateHeader();
+
+  toggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.textContent = open ? "Close" : "Menu";
+    updateHeader();
+  });
+  nav.addEventListener("click", (e) => {
+    if (e.target.closest("a")) {
+      nav.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.textContent = "Menu";
+      updateHeader();
+    }
+  });
+
+  /* Mark the current section in the nav --------------------------------- */
+  const links = $$(".nav a");
+  const sections = links.map(a => $(a.getAttribute("href"))).filter(Boolean);
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          links.forEach(l => l.setAttribute("aria-current", String(l.getAttribute("href") === "#" + en.target.id)));
+        }
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    sections.forEach(s => io.observe(s));
+  }
+
+  /* Contact form: opens a pre-filled email ------------------------------ */
+  $("#contact-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const d = new FormData(e.target);
+    const body = `${d.get("message")}\n\n${d.get("name")}\n${d.get("email")}`;
+    window.location.href =
+      `mailto:${SITE.email}?subject=${encodeURIComponent("Enquiry from " + d.get("name"))}&body=${encodeURIComponent(body)}`;
+  });
+})();
+</script>
+</body>
+</html>
